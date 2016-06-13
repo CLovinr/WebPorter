@@ -8,17 +8,15 @@ import java.security.SecureRandom;
 
 /**
  * AES加解密.
- *
- * @author ZhuiFeng
  */
-class AES
+public class AES
 {
     private Cipher cipher;
     private SecretKeySpec sKeySpec;
     static final String CIPHER_ALGORITHM = "AES/ECB/PKCS5Padding";
     static final String KEY_ALGORITHM = "AES";
 
-    class InitAESException extends Exception
+    public class InitAESException extends Exception
     {
         /**
          *
@@ -33,14 +31,21 @@ class AES
 
     /**
      * @param psw
-     * @param bits 多少位
+     * @param bits 多少位 128,192,256等
      * @throws InitAESException
      */
     public AES(byte[] psw, int bits) throws InitAESException
     {
         try
         {
-            sKeySpec = new SecretKeySpec(psw, KEY_ALGORITHM);
+            //sKeySpec = new SecretKeySpec(psw, KEY_ALGORITHM);
+
+            KeyGenerator kgen = KeyGenerator.getInstance(KEY_ALGORITHM);
+            kgen.init(bits, new SecureRandom(psw));
+            SecretKey secretKey = kgen.generateKey();
+            byte[] enCodeFormat = secretKey.getEncoded();
+            sKeySpec = new SecretKeySpec(enCodeFormat, KEY_ALGORITHM);
+
             cipher = Cipher.getInstance(CIPHER_ALGORITHM);
         } catch (Exception e)
         {

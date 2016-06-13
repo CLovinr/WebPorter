@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="13" failures="0" name="com.chenyg.wporter.simple.WPFormBuilderTest" time="0.084" errors="0" skipped="0">
+<testsuite tests="13" failures="0" name="com.chenyg.wporter.simple.WPFormBuilderTest" time="0.023" errors="0" skipped="0">
   <properties>
-    <property name="idea.version" value="2016.1.2"/>
+    <property name="idea.version" value="2016.1.3"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="D:\Program Files\Java\jdk1.8.0_20\jre\bin"/>
     <property name="java.vm.version" value="25.20-b23"/>
@@ -12,7 +12,7 @@
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
     <property name="file.encoding.pkg" value="sun.io"/>
-    <property name="idea.launcher.port" value="7534"/>
+    <property name="idea.launcher.port" value="7537"/>
     <property name="user.script" value=""/>
     <property name="user.country" value="CN"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
@@ -48,7 +48,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="D:\Program Files\Java\jdk1.8.0_20\jre"/>
-    <property name="sun.java.command" value="com.intellij.rt.execution.application.AppMain org.codehaus.classworlds.Launcher -Didea.version=2016.1.2 -s H:\Win10Moved\Users\宇宙之灵\.m2\settings.xml -Dmaven.repo.local=H:\Win10Moved\Users\宇宙之灵\.m2\repository install"/>
+    <property name="sun.java.command" value="com.intellij.rt.execution.application.AppMain org.codehaus.classworlds.Launcher -Didea.version=2016.1.3 -s H:\Win10Moved\Users\宇宙之灵\.m2\settings.xml -Dmaven.repo.local=H:\Win10Moved\Users\宇宙之灵\.m2\repository install"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="zh"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -65,17 +65,17 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.chenyg.wporter.simple.WPFormBuilderTest" name="testCheckParamCount" time="0.078"/>
-  <testcase classname="com.chenyg.wporter.simple.WPFormBuilderTest" name="testWriteForWpFormOs" time="0.001"/>
+  <testcase classname="com.chenyg.wporter.simple.WPFormBuilderTest" name="testCheckParamCount" time="0.016"/>
+  <testcase classname="com.chenyg.wporter.simple.WPFormBuilderTest" name="testParamAppValues" time="0"/>
   <testcase classname="com.chenyg.wporter.simple.WPFormBuilderTest" name="testParamForNameValue" time="0"/>
   <testcase classname="com.chenyg.wporter.simple.WPFormBuilderTest" name="testWriteForWpFormWpObject" time="0"/>
-  <testcase classname="com.chenyg.wporter.simple.WPFormBuilderTest" name="testParamAppValues" time="0"/>
+  <testcase classname="com.chenyg.wporter.simple.WPFormBuilderTest" name="testWriteForWpFormOs" time="0.001"/>
+  <testcase classname="com.chenyg.wporter.simple.WPFormBuilderTest" name="testBuild" time="0"/>
+  <testcase classname="com.chenyg.wporter.simple.WPFormBuilderTest" name="testDecode" time="0.005"/>
+  <testcase classname="com.chenyg.wporter.simple.WPFormBuilderTest" name="testWrite" time="0"/>
+  <testcase classname="com.chenyg.wporter.simple.WPFormBuilderTest" name="testSetEncoding" time="0"/>
+  <testcase classname="com.chenyg.wporter.simple.WPFormBuilderTest" name="testClearParams" time="0"/>
+  <testcase classname="com.chenyg.wporter.simple.WPFormBuilderTest" name="testFormFiles" time="0.001"/>
   <testcase classname="com.chenyg.wporter.simple.WPFormBuilderTest" name="testWriteShortValue" time="0"/>
   <testcase classname="com.chenyg.wporter.simple.WPFormBuilderTest" name="testWriteShortLenData" time="0"/>
-  <testcase classname="com.chenyg.wporter.simple.WPFormBuilderTest" name="testWrite" time="0"/>
-  <testcase classname="com.chenyg.wporter.simple.WPFormBuilderTest" name="testClearParams" time="0"/>
-  <testcase classname="com.chenyg.wporter.simple.WPFormBuilderTest" name="testDecode" time="0.005"/>
-  <testcase classname="com.chenyg.wporter.simple.WPFormBuilderTest" name="testBuild" time="0"/>
-  <testcase classname="com.chenyg.wporter.simple.WPFormBuilderTest" name="testFormFiles" time="0"/>
-  <testcase classname="com.chenyg.wporter.simple.WPFormBuilderTest" name="testSetEncoding" time="0"/>
 </testsuite>

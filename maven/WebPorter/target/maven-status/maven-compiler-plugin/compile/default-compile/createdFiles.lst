@@ -3,7 +3,6 @@ com\chenyg\wporter\util\Foreach.class
 com\chenyg\wporter\incheck\LongChecker.class
 com\chenyg\wporter\WebPorterDynamic$ParamExtra.class
 org\json\JSONStringer.class
-com\chenyg\wporter\security\AsymEncryptionUtil$RsaAsymEncryptionUtil.class
 com\chenyg\wporter\a\servlet\WPServletResponse$1.class
 com\chenyg\wporter\security\AES.class
 com\chenyg\wporter\annotation\NotNULL.class
@@ -85,6 +84,7 @@ com\chenyg\wporter\Config$2.class
 org\json\JSONArray.class
 com\chenyg\wporter\a\app\AppResponse.class
 com\chenyg\wporter\InCheckParser$CheckResult.class
+com\chenyg\wporter\security\AsymEncryptionUtil$1.class
 com\chenyg\wporter\util\Callback.class
 com\chenyg\wporter\a\app\AppResponse$1.class
 org\json\JSONObject.class

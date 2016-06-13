@@ -78,9 +78,11 @@ public class BytesTool
 //
 //        return new String(cs);
         final String HEX = "0123456789abcdef";
-        StringBuilder sb = new StringBuilder(bs.length * 2);
-        for (byte b : bs)
+        StringBuilder sb = new StringBuilder(length * 2);
+        int nend=offset+length;
+        for (int i=offset;i<nend;i++)
         {
+            byte b= bs[i];
             sb.append(HEX.charAt((b >> 4) & 0x0f));
             sb.append(HEX.charAt(b & 0x0f));
         }
