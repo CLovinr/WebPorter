@@ -41,7 +41,7 @@ public class BytesTool
         int n, current = 0;
         while (atLeast > 0)
         {
-            n = in.read(buf, offset, buf.length - offset);
+            n = in.read(buf, offset, atLeast);
             if (n == -1)
             {
                 throw new IOException("the stream is end!");

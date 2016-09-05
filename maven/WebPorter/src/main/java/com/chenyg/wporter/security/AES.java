@@ -13,8 +13,6 @@ public class AES
 {
     private Cipher cipher;
     private SecretKeySpec sKeySpec;
-    static final String CIPHER_ALGORITHM = "AES/ECB/PKCS5Padding";
-    static final String KEY_ALGORITHM = "AES";
 
     public class InitAESException extends Exception
     {
@@ -23,9 +21,48 @@ public class AES
          */
         private static final long serialVersionUID = 1L;
 
-        public InitAESException(String info)
+        public InitAESException(Throwable thr)
         {
-            super(info);
+            super(thr);
+        }
+    }
+
+    /**
+     * @param pswEncoded
+     * @throws InitAESException
+     */
+    public AES(byte[] pswEncoded) throws InitAESException
+    {
+        init(pswEncoded);
+    }
+
+    private void init(byte[] pswEncoded) throws InitAESException
+    {
+        try
+        {
+            sKeySpec = new SecretKeySpec(pswEncoded, "AES");
+            cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+        } catch (Exception e)
+        {
+            throw new InitAESException(e);
+        }
+    }
+
+    public AES(int bits, SecureRandom secureRandom) throws InitAESException
+    {
+        try
+        {
+            KeyGenerator kgen = KeyGenerator.getInstance("AES");
+            kgen.init(bits, secureRandom);
+            SecretKey secretKey = kgen.generateKey();
+            byte[] enCodeFormat = secretKey.getEncoded();
+            init(enCodeFormat);
+        } catch (InitAESException e)
+        {
+            throw e;
+        } catch (Exception e)
+        {
+            throw new InitAESException(e);
         }
     }
 
@@ -38,20 +75,18 @@ public class AES
     {
         try
         {
-            //sKeySpec = new SecretKeySpec(psw, KEY_ALGORITHM);
-
-            KeyGenerator kgen = KeyGenerator.getInstance(KEY_ALGORITHM);
+            KeyGenerator kgen = KeyGenerator.getInstance("AES");
             kgen.init(bits, new SecureRandom(psw));
             SecretKey secretKey = kgen.generateKey();
             byte[] enCodeFormat = secretKey.getEncoded();
-            sKeySpec = new SecretKeySpec(enCodeFormat, KEY_ALGORITHM);
-
-            cipher = Cipher.getInstance(CIPHER_ALGORITHM);
+            init(enCodeFormat);
+        } catch (InitAESException e)
+        {
+            throw e;
         } catch (Exception e)
         {
-            throw new InitAESException(e.toString());
+            throw new InitAESException(e);
         }
-
     }
 
     /**

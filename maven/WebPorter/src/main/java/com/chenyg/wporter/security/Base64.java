@@ -99,7 +99,7 @@ public class Base64
     }
 
 
-    public static byte[] decode(String str) throws IOException
+    public static byte[] decode(String str)
     {
         return Base64Util.decode(str);
     }
