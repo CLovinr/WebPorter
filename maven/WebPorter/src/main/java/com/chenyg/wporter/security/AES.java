@@ -1,18 +1,15 @@
 package com.chenyg.wporter.security;
 
+import java.security.SecureRandom;
+
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
-import java.security.SecureRandom;
 
-/**
- * AES加解密.
- */
 public class AES
 {
     private Cipher cipher;
-    private SecretKeySpec sKeySpec;
+    private SecretKey sKey;
 
     public class InitAESException extends Exception
     {
@@ -27,39 +24,19 @@ public class AES
         }
     }
 
-    /**
-     * @param pswEncoded
-     * @throws InitAESException
-     */
-    public AES(byte[] pswEncoded) throws InitAESException
-    {
-        init(pswEncoded);
-    }
 
-    private void init(byte[] pswEncoded) throws InitAESException
+    private void init(byte[] pswEncoded, int bits) throws InitAESException
     {
         try
         {
-            sKeySpec = new SecretKeySpec(pswEncoded, "AES");
+            //sKeySpec = new SecretKeySpec(pswEncoded, "AES");
             cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-        } catch (Exception e)
-        {
-            throw new InitAESException(e);
-        }
-    }
 
-    public AES(int bits, SecureRandom secureRandom) throws InitAESException
-    {
-        try
-        {
             KeyGenerator kgen = KeyGenerator.getInstance("AES");
+            SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");
+            secureRandom.setSeed(pswEncoded);
             kgen.init(bits, secureRandom);
-            SecretKey secretKey = kgen.generateKey();
-            byte[] enCodeFormat = secretKey.getEncoded();
-            init(enCodeFormat);
-        } catch (InitAESException e)
-        {
-            throw e;
+            sKey = kgen.generateKey();
         } catch (Exception e)
         {
             throw new InitAESException(e);
@@ -75,11 +52,7 @@ public class AES
     {
         try
         {
-            KeyGenerator kgen = KeyGenerator.getInstance("AES");
-            kgen.init(bits, new SecureRandom(psw));
-            SecretKey secretKey = kgen.generateKey();
-            byte[] enCodeFormat = secretKey.getEncoded();
-            init(enCodeFormat);
+            init(psw, bits);
         } catch (InitAESException e)
         {
             throw e;
@@ -100,7 +73,7 @@ public class AES
      */
     public byte[] encrypt(byte[] content, int offset, int length) throws Exception
     {
-        cipher.init(Cipher.ENCRYPT_MODE, sKeySpec);
+        cipher.init(Cipher.ENCRYPT_MODE, sKey);
         byte[] result = cipher.doFinal(content, offset, length);
         return result;
     }
@@ -113,8 +86,9 @@ public class AES
      */
     public byte[] decrypt(byte[] content, int offset, int length) throws Exception
     {
-        cipher.init(Cipher.DECRYPT_MODE, sKeySpec);// 初始化
+        cipher.init(Cipher.DECRYPT_MODE, sKey);// 初始化
         byte[] result = cipher.doFinal(content, offset, length);
         return result; // 加密
     }
 }
+
